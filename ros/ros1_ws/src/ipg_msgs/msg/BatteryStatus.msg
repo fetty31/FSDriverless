@@ -1,0 +1,6 @@
+Header header
+
+GeneralSensor Current
+GeneralSensor Voltage
+GeneralSensor Temperature
+GeneralSensor Power

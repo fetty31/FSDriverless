@@ -1,0 +1,24 @@
+<launch>
+
+  <arg name="track_name" default="FSS.yaml"/> <!-- change this for selecting the track -->
+
+  <arg name="use_sim_time" default="true"/>
+  <param name="use_sim_time" value="$(arg use_sim_time)"/>
+
+  <node pkg="tracker" name="tracker_start" type="start.py" output="screen" required="true">
+    <param name="path" type="str" value="$(find tracker)/tracks/$(arg track_name)"/>
+    <param name="cone_daes" type="bool" value="true"/> <!-- whether we want to visualize the cone's dae files -->
+    <param name="freq" type="double" value="1"/> <!-- if tracker cones can be moved, it should be 10Hz minimum -->
+  </node>
+
+  <node pkg="tracker" name="tracker" type="tracker" output="screen" required="true">
+    <rosparam file="$(find tracker)/params/tracker.yaml"/>
+  </node>
+
+  <!-- Include CMNode parameters launch -->
+  <include file="$(find cmnode)/launch/cmnode.launch"/>
+
+  <!-- Include Visualizer launch -->
+  <include file="$(find visualizer)/launch/ipg.launch"/>
+
+</launch>

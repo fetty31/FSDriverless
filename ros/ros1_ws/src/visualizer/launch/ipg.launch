@@ -1,0 +1,11 @@
+<launch>
+
+    <param name="robot_description" command="$(find xacro)/xacro $(find visualizer)/urdf/model.xacro" />
+
+    <!-- TFs for XALOC wheels-->
+    <node pkg="visualizer" type="visualizer" name="visualizer" output="screen"/>
+
+    <!-- rviz -->
+    <node pkg="rviz" type="rviz" name="rviz_visualizer" args="-d $(find visualizer)/rviz/default.rviz --opengl 210"/>
+
+</launch>

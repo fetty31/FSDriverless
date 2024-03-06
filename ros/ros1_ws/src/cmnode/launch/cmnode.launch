@@ -1,0 +1,6 @@
+<launch>
+
+    <!-- Global parameters for IPG -->
+    <rosparam file="$(find cmnode)/params/cmnode.yaml" ns="IPG"/> 
+
+</launch>

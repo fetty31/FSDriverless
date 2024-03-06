@@ -1,0 +1,276 @@
+diff -ru ../src/Makefile ./Makefile
+--- ../src/Makefile
++++ ./Makefile
+@@ -24,6 +24,24 @@
+ 			$(CARMAKER_LIB) $(DRIVER_LIB) $(ROAD_LIB) $(TIRE_LIB)
+ OBJS =			CM_Main.o CM_Vehicle.o User.o
+ 
++# Paths to ROS workspaces (relative from project directory)
++ROS1_WS_DIR     ?= ros/ros1_ws
++ROS2_WS_DIR     ?= ros/ros2_ws
++
++# Uncomment to define your preferred ROS distro for each workspace,
++# otherwise /opt/ros/ros1 or /opt/ros/ros2 is used
++#ROS1_WS_ENV     ?= ROS_DISTRO=melodic
++#ROS2_WS_ENV     ?= ROS_DISTRO=dashing
++
++# CarMaker extension CMCppIF (provided by IPG)
++APP_VER         := "$(subst ",,$(APP_VER)) with CMRosIF"
++DEF_CFLAGS      += -DWITH_CMCPPIF
++LD_LIBS_OS      += -lcmcppifloader-$(ARCH)
++LDFLAGS         += -L./../lib/
++LDFLAGS         += -Wl,-rpath,'$$ORIGIN/../lib/'
++INC_CFLAGS      += -I../include
++CFLAGS          += -rdynamic
++
+ # Prepend local include/library directory to include path:
+ # PREINC_CFLAGS +=		-I../include -I../lib/$(ARCH) -I../lib
+ 
+@@ -56,7 +74,7 @@
+ 	$(INSTALL_APP) $(APP_NAME) $(ARCH)
+ 
+ clean:
+-	-rm -f 	*~ *% *.o core
++	-rm -f 	*~ *% *.o core app_tmp.c .depend
+ 
+ app_tmp.c: Makefile $(OBJS_$(ARCH)) $(OBJS) $(LD_LIBS_MK)
+ 	$(QECHO) " MK     $@"
+@@ -66,4 +84,50 @@
+ 	$(QECHO) " MK     $@"
+ 	$Q-$(CC)  $(CFLAGS)   $(DEPCFLAGS)   *.c   >  .depend 2>/dev/null
+ #	$Q-$(CXX) $(CXXFLAGS) $(DEPCXXFLAGS) *.cpp >> .depend 2>/dev/null
+-include .depend
++
++cm-ros1: install ros1_ws ../CMStart.sh
++cm-ros2: install ros2_ws ../CMStart.sh
++
++XMAKER:=CM
++ifneq (,$(findstring $(TRUCK_LIB),$(LD_LIBS)))
++    XMAKER:=TM
++else ifneq (,$(findstring $(MCYCLE_LIB),$(LD_LIBS)))
++    XMAKER:=MM
++endif
++
++../CMStart.sh:
++	@echo " CRT    $@"
++	$Q if [ -e "$@" ]; then echo "'$@' already exists"; false; fi
++	@( \
++	echo "#!/bin/bash"; \
++	echo "source ros_setup.bash \$${1:-$(patsubst cm-ros%,%,$(firstword $(filter cm-ros%,$(MAKECMDGOALS))))}"; \
++	echo "$(XMAKER)-$(CARMAKER_VER) . -apphost localhost -ext GUI/CMExt-CMRosIF.mod"; \
++	) > $@
++	$Q chmod +x $@
++
++CMAKE_ARGS:=\
++ -DCARMAKER_VER:STRING=${CARMAKER_VER}\
++ -DCARMAKER_DIR:PATH=${CARMAKER_DIR}
++
++ros1_ws:
++	$(QECHO) " MK     $@"
++	$Q cd ./../${ROS1_WS_DIR} && $(ROS1_WS_ENV) ./build.sh '${CMAKE_ARGS}'
++
++clean-ros1_ws:
++	-rm -rf ./../${ROS1_WS_DIR}/build
++	-rm -rf ./../${ROS1_WS_DIR}/devel
++	-rm -rf ./../${ROS1_WS_DIR}/install
++
++ros2_ws:
++	$(QECHO) " MK     $@"
++	$Q cd ./../${ROS2_WS_DIR} && \
++	   $(ROS2_WS_ENV) ./build.sh '--cmake-args ${CMAKE_ARGS} --no-warn-unused-cli'
++
++clean-ros2_ws:
++	-rm -rf ./../${ROS2_WS_DIR}/build ./../${ROS2_WS_DIR}/install
++
++ifeq (,$(findstring clean,$(MAKECMDGOALS)))
++ -include .depend || true
++endif
++
++.PHONY: default install clean depend ros1_ws ros2_ws clean-%
+diff -ru ../src/User.c ./User.c
+--- ../src/User.c
++++ ./User.c
+@@ -92,6 +92,10 @@
+ #include "IOVec.h"
+ #include "User.h"
+ 
++#if defined(WITH_CMCPPIF)
++#include "cmcppifloader.h"
++#endif
++
+ /* @@PLUGIN-BEGIN-INCLUDE@@ - Automatically generated code - don't edit! */
+ /* @@PLUGIN-END@@ */
+ 
+@@ -205,7 +209,34 @@
+ int
+ User_Init (void)
+ {
+-    return 0;
++    int rv = 0;
++#if defined(WITH_CMCPPIF)
++    CMCppIFLoader_load("CMRosIF");
++    rv = CMCppIFLoader_init();
++
++    { /* Example code block to demonstrate
++       * how to access and evaluate data within the C++ interface
++       */
++
++      /* Get function pointer to custom function */
++      int (*customfunc) (void* intf, const int input, char* output) =
++          CMCppIFLoader_getSymbol("CMNodeHelloCM_customFunction");
++
++      /* Get pointer to instatiated interface */
++      void* cmrosif = CMCppIFLoader_getInterfacePtr();
++
++      /* Call custom function of instatiated interface */
++      if (customfunc != NULL && cmrosif != NULL) {
++        char string[100] = "";
++        Log("%s\n", "Calling CMNodeHelloCM_customFunction:");
++        int rv = customfunc(cmrosif, 42, string);
++        Log("  Output string: %s\n", string);
++        Log("  Return value: %d\n", rv);
++      }
++    }
++#endif
++
++    return rv;
+ }
+ 
+ 
+@@ -246,6 +277,10 @@
+ #if defined(XENO)
+     IOConf_MapQuants();
+ #endif
++
++#if defined(WITH_CMCPPIF)
++    CMCppIFLoader_declQuants();
++#endif
+ }
+ 
+ 
+@@ -354,6 +389,9 @@
+     for (i=0; i<N_USEROUTPUT; i++)
+ 	User.Out[i] = 0.0;
+ 
++#if defined(WITH_CMCPPIF)
++    rv = CMCppIFLoader_testrunStartAtBegin();
++#endif
+ 
+     if (IO_None)
+ 	return rv;
+@@ -389,7 +427,12 @@
+ int
+ User_TestRun_Start_atEnd (void)
+ {
+-    return 0;
++    int rv = 0;
++#if defined(WITH_CMCPPIF)
++    rv = CMCppIFLoader_testrunStartAtEnd();
++#endif
++
++    return rv;
+ }
+ 
+ 
+@@ -445,6 +488,10 @@
+ {
+     int IsReady = 1;
+ 
++#if defined(WITH_CMCPPIF)
++    IsReady = CMCppIFLoader_testrunRampUp();
++#endif
++
+     return IsReady;
+ }
+ 
+@@ -487,7 +534,12 @@
+ int
+ User_TestRun_End (void)
+ {
+-    return 0;
++    int rv = 0;
++#if defined(WITH_CMCPPIF)
++    rv = CMCppIFLoader_testrunEnd();
++#endif
++
++    return rv;
+ }
+ 
+ 
+@@ -506,6 +558,10 @@
+ void
+ User_In (const unsigned CycleNo)
+ {
++#if defined(WITH_CMCPPIF)
++    CMCppIFLoader_in();
++#endif
++
+     if (SimCore.State != SCState_Simulate)
+ 	return;
+ }
+@@ -529,7 +585,12 @@
+     if (Vehicle.OperationState != OperState_Driving)
+ 	return 0;
+ 
+-    return 0;
++    int rv = 0;
++#if defined(WITH_CMCPPIF)
++    rv = CMCppIFLoader_drivmanCalc(&dt);
++#endif
++
++    return rv;
+ }
+ 
+ 
+@@ -550,7 +611,12 @@
+     if (Vehicle.OperationState != OperState_Driving)
+ 	return 0;
+ 
+-    return 0;
++    int rv = 0;
++#if defined(WITH_CMCPPIF)
++    rv = CMCppIFLoader_vehicleControlCalc(&dt);
++#endif
++
++    return rv;
+ }
+ 
+ 
+@@ -609,7 +675,12 @@
+        of CM 5.1 and earlier. */
+     /*if (!UserCalcCalledByAppTestRunCalc) return 0;*/
+ 
+-    return 0;
++    int rv = 0;
++#if defined(WITH_CMCPPIF)
++    rv = CMCppIFLoader_calc(&dt);
++#endif
++
++    return rv;
+ }
+ 
+ 
+@@ -674,6 +745,10 @@
+ {
+     RBS_OutMap(CycleNo);
+ 
++#if defined(WITH_CMCPPIF)
++    CMCppIFLoader_out();
++#endif
++
+     if (SimCore.State != SCState_Simulate)
+ 	return;
+ }
+@@ -769,7 +844,12 @@
+ int
+ User_End (void)
+ {
+-    return 0;
++    int rv = 0;
++#if defined(WITH_CMCPPIF)
++    rv = CMCppIFLoader_end();
++#endif
++
++    return rv;
+ }
+ 

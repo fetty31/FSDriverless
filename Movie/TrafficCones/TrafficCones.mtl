@@ -1,0 +1,31 @@
+newmtl plastic_white_traffic
+Kd 0.879623 0.871367 0.822786
+Ka 0.9 0.9 0.8
+Ks 0.750 0.750 0.750
+Ns 200
+Rr factor 0.95
+MatID plastic_retroreflective
+
+newmtl plastic_orange_traffic
+Kd 0.730461 0.086500 0.002125
+Ka 0.73 0.09 0.0
+Ks 0.750 0.750 0.750
+Ns 200
+Rr factor 0.85
+matID plastic_retroreflective
+
+newmtl plastic_yellow_traffic
+Kd 0.930111 0.462077 0.000000
+Ka 0.9 0.45 0
+Ks 0.750 0.750 0.750
+Ns 200
+Rr factor 0.85
+MatID plastic_retroreflective
+
+newmtl plastic_blue_traffic
+Kd 0.000000 0.104617 0.262251
+Ka 0.0 0.25 0.65
+Ks 0.750 0.750 0.750
+Ns 200
+Rr factor 0.85
+MatID plastic_retroreflective

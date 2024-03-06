@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>carmaker_rsds_client</name>
+  <version>0.1.0</version>
+  <description>Example carmaker_rsds_client ROS node</description>
+  <license>IPG Automotive, Formula CarMaker</license>
+
+  <maintainer email="formulacarmaker@ipg-automotive.com">IPG Formula CarMaker Support</maintainer>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <build_depend>rosidl_default_generators</build_depend>
+  <exec_depend>rosidl_default_runtime</exec_depend>
+  <member_of_group>rosidl_interface_packages</member_of_group>
+
+  <depend>rclcpp</depend>
+  <depend>cmrosutils</depend>
+  <depend>image_transport</depend>
+  <depend>camera_msgs</depend>
+  <!--depend>camera_info_manager</depend-->
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

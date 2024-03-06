@@ -1,0 +1,118 @@
+<launch>
+
+<!-- IPGMovie -->
+  <arg doc="Host on which CarMaker executable is running"
+       name="carmaker_host" default="localhost"/>
+
+  <arg doc="Location of CarMaker project folder"
+       name="project_folder" default="./../../../../../"/>
+
+  <arg doc="Movie startup delay factor for multiple instances"
+       name="delay_factor" default="0.5"/>
+
+  <arg doc="Movie startup delay for multiple instances"
+       name="startup_delay" default="$(eval arg('delay_factor') * arg('camera_no'))"/>
+<!-- IPGMovie -->
+
+<!-- RSDS client -->
+  <arg doc="Camera number"
+       name="camera_no" default="0"/>
+
+  <arg doc="Host on which IPGMovie instance is running"
+       name="rsds_host" default="$(arg carmaker_host)"/>
+
+  <arg doc="Connection port defined in RSDS.conf file"
+       name="rsds_port" default="$(eval 2210)"/>
+
+  <arg doc="How often RSDS client should try to connect to IPGMovie host"
+       name="connection_tries" default="5"/>
+
+  <arg doc="Camera name for ROS topic"
+       name="camera_name" default="rsds_node_$(arg rsds_host)_$(arg rsds_port)"/>
+
+  <arg doc="Name of camera frame_id for ROS topic"
+       name="camera_frame" default="$(arg camera_name)"/>
+<!-- RSDS client -->
+
+  <arg doc="Launch rqt_image_view"
+       name="start_rqt_image_view" default="true"/>
+
+<!-- External Coordinate Transformation -->
+<arg doc="Translation (in m) and rotation (Euler ZYX in degree) in Fr1A frame: x, y, z, roll, pitch, yaw"
+     name="param_trans_rot" default="[2.8, 0, 1.3, 0, 0, 0]"/>
+<!-- External Coordinate Transformation -->
+
+<!-- Camera calibration -->
+<!-- Default values based on distortion-free direct lens  -->
+  <arg doc="Field of View in degree"
+       name="fov_deg" default="60"/>
+       
+  <arg doc="Image width"
+       name="width" default="1920"/>
+       
+  <arg doc="Image height"
+       name="height" default="1080"/>
+       
+  <arg doc="Horizontal principal point"
+       name="c_x" default="$(eval 0.5 * arg('width'))"/>
+       
+  <arg doc="Vertical principal point"
+       name="c_y" default="$(eval 0.5 * arg('height'))"/>
+       
+  <arg doc="Field of View in radians"
+       name="fov_rad" default="$(eval arg('fov_deg') * 3.1415 / 180.)"/>
+       
+  <arg doc="Horizontal focal length"
+       name="f_x" default="$(eval arg('c_x')/(tan(0.5 * arg('fov_rad'))))"/>
+       
+  <arg doc="Vertical focal length"
+       name="f_y" default="$(eval arg('c_y')/(tan(0.5 * arg('fov_rad'))))"/>
+       
+  <arg doc="Max. focal length, used for direct lense"
+       name="max_f" default="$(eval arg('f_x') if arg('f_x') >= arg('f_y') else arg('f_y'))"/>
+
+  <arg doc="Intrinsic camera matrix for the raw (distorted) images"
+       name="calib_mat_k" default="[$(arg max_f), 0, $(arg c_x), 0, $(arg max_f), $(arg c_y), 0, 0, 1]"/>
+
+  <arg doc="Rectification matrix (stereo cameras only)"
+       name="calib_mat_r" default="[1, 0, 0, 0, 1, 0, 0, 0, 1]"/>
+
+  <arg doc="Projection/camera matrix"
+       name="calib_mat_p" default="[$(arg max_f), 0, $(arg c_x), 0, 0, $(arg max_f), $(arg c_y), 0, 0, 0, 1, 0]"/>
+
+  <arg doc="The distortion parameters, size depending on the distortion model"
+       name="calib_mat_d" default="[0.0]"/>
+
+  <arg doc="The distortion model used, leave empty if distortion-free. See sensor_msgs/distortion_models.h"
+       name="distortion_model" default=""/>
+
+  <arg doc="Binning combines rectangular neighborhoods of pixels into larger pixels"
+       name="binning_x" default="0"/>
+
+  <arg doc="Binning combines rectangular neighborhoods of pixels into larger pixels"
+       name="binning_y" default="0"/>
+<!-- Camera calibration -->
+
+  <node pkg="carmaker_rsds_client" type="carmaker_rsds_client_node" name="$(arg camera_name)"
+        launch-prefix="bash -c 'sleep $(arg startup_delay); $0 $@' " required="true">
+    <param name="rsds_host" value="$(arg rsds_host)"/>
+    <param name="rsds_port" value="$(arg rsds_port)"/>
+    <param name="connection_tries" value="$(arg connection_tries)"/>
+    <param name="camera_frame" value="$(arg camera_frame)"/>
+
+    <rosparam param="param_trans_rot" subst_value="True">$(arg param_trans_rot)</rosparam>
+
+    <rosparam param="calib_mat_k" subst_value="True">$(arg calib_mat_k)</rosparam>
+    <rosparam param="calib_mat_r" subst_value="True">$(arg calib_mat_r)</rosparam>
+    <rosparam param="calib_mat_p" subst_value="True">$(arg calib_mat_p)</rosparam>
+    <rosparam param="calib_mat_d" subst_value="True">$(arg calib_mat_d)</rosparam>
+
+    <param name="distortion_model" value ="$(arg distortion_model)"/>
+    <param name="binning_x" value="$(arg binning_x)"/>
+    <param name="binning_y" value="$(arg binning_y)"/>
+
+  </node>
+
+  <node pkg="rqt_image_view" type="rqt_image_view" name="$(arg camera_name)_rqt_image_view"
+        args="/$(arg camera_name)/image_raw" if="$(arg start_rqt_image_view)"/>
+</launch>

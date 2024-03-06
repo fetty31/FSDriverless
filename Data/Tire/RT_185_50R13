@@ -1,0 +1,56 @@
+#INFOFILE1.1 - Do not remove this line!
+FileIdent = CarMaker-Tire-RTTire 3
+FileCreator = CarMaker 2021-03-10 16:40:04
+Description:
+	Created with IPG Tire Data Set Generator - Version Date: 2020-06-22
+	Generated - not validated - Tire data
+	Based on 'RT_185_50R13.tdx'
+	""
+	#   Load:      32 points [ 0 N  to  6250 N ]
+	#   Slip:     128 points [ -0.15   to  0.15 ]
+	#   Alpha:    128 points [ -12 deg  to  12 deg ]
+
+
+## General ###############################################################
+Side = left
+StandStill.cLong = 0.01
+StandStill.cSide = 0.2
+StandStill.vMax = 2.0
+
+
+## Visualization #########################################################
+FLoadMax = 5000
+NomWidth = 0.185
+AspectRatio = 0.5
+
+
+## RT-Tire ###############################################################
+muRoad = 1
+KinRollRadius = 0.250817
+NomRadius = 0.2575
+Radial.Stiffness = 349447
+Radial.Damping = 3546.8
+
+RollResist.Kind = TrqLoad
+RollResist.Factor = 0.0214
+
+LongFrc.Length = 0.05
+SideFrc.Length = 0.1
+AlignTrq.Length = 0.1
+LongFrc.Stiffness = 1.0
+SideFrc.Stiffness = 1.0
+AlignTrq.Stiffness = 1.0
+
+InclinAngle2OffsetFy = 0.0
+InclinAngle2OffsetMz = 0.0
+InclinAngle2Alpha = 0.0
+
+TurnSlip.MzMax = 0.0
+TurnSlip.cMz = 0.0
+TurnSlip.Alpha2Mz = 0.0
+
+BinFName = Mapping/RT_185_50R13.bin
+
+
+## Additional Parameters #################################################
+CreateArgs = -if Data/Tire/Examples/RT_185_50R13.tdx -of Data/Tire/Examples/RT_185_50R13

@@ -1,0 +1,15 @@
+bin/*
+SimOutput/*
+lib/libcmcppifloader-linux64.so
+Movie/.*
+*.autobackup
+*.zip
+tmp.obj
+.vscode
+.tmp*.*
+Movie/.road_cache/*
+User_*.*
+Makefile_*
+app_tmp_*
+*.o
+doc/*

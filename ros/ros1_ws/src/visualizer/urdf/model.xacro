@@ -1,0 +1,89 @@
+<robot name="CAT15X">
+
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <mesh filename="package://visualizer/mesh/rviz_reduced.dae"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0.8 0 0"/>
+        </visual>
+    </link>
+
+    <link name="wheel_FR">
+        <visual>
+            <geometry>
+                <cylinder length="0.20" radius="0.20"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <material name="grey">
+                <color rgba="0.2 0.2 0.2 1.0"/>
+            </material>
+            
+        </visual>
+    </link>
+
+     <link name="wheel_FL">
+        <visual>
+            <geometry>
+                <cylinder length="0.20" radius="0.20"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <material name="grey">
+                <color rgba="0.2 0.2 0.2 1.0"/>
+            </material>
+        </visual>
+    </link>
+
+    <link name="wheel_RR">
+        <visual>
+            <geometry>
+                <cylinder length="0.20" radius="0.20"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <material name="grey">
+                <color rgba="0.2 0.2 0.2 1.0"/>
+            </material>
+        </visual>
+    </link>
+
+    <link name="wheel_RL">
+        <visual>
+            <geometry>
+                <cylinder length="0.20" radius="0.20"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <material name="grey">
+                <color rgba="0.2 0.2 0.2 1.0"/>
+            </material>
+        </visual>
+    </link>
+
+    <joint name="base_to_wheel_FL" type="fixed">
+        <parent link="base_link"/>
+        <child link="wheel_FL"/>
+        <origin xyz="0 0 0"/>
+        <axis xyz="1 0 0"/>
+    </joint>
+
+    <joint name="base_to_wheel_FR" type="fixed">
+        <parent link="base_link"/>
+        <child link="wheel_FR"/>
+        <origin xyz="0 0 0"/>
+        <axis xyz="1 0 0"/>
+    </joint>
+
+    <joint name="base_to_wheel_RL" type="fixed">
+        <parent link="base_link"/>
+        <child link="wheel_RL"/>     
+        <origin xyz="0 0 0"/>
+        <axis xyz="1 0 0"/>
+    </joint>
+
+    <joint name="base_to_wheel_RR" type="fixed">
+        <parent link="base_link"/>
+        <child link="wheel_RR"/>     
+        <origin xyz="0 0 0"/>
+        <axis xyz="1 0 0"/>
+    </joint>
+
+</robot>

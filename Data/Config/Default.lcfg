@@ -1,0 +1,28 @@
+#INFOFILE1.1 - Do not remove this line!
+FileIdent = Scenario-LaneConfig 2.0
+FileCreator = CarMaker 11.0.1
+
+Name = Default
+Prio = 1
+
+LaneL = roadside 2.5
+LaneL.0 = road 3.5
+LaneL.1 = border 1.0
+LaneR = roadside 2.5
+LaneR.0 = road 3.5
+LaneR.1 = border 1.0
+
+RoadMarkingL.0 = line 2.0 4.0 0.15 {1.0 1.0 1.0} 0.0 left
+RoadMarkingL.1 = none 2.0 4.0 0.15 {1.0 1.0 1.0} 0.0 left
+RoadMarkingR.0 = line 2.0 4.0 0.15 {1.0 1.0 1.0} 0.0 right
+RoadMarkingR.1 = none 2.0 4.0 0.15 {1.0 1.0 1.0} 0.0 right
+RoadMarkingC = dash 2.0 4.0 0.15 {1.0 1.0 1.0} 0.0 center
+
+TrafficBarrierL.0 = none sigma 0.155 0.75 3.0 0.0 left
+TrafficBarrierL.1 = none sigma 0.155 0.75 3.0 0.0 left
+TrafficBarrierR.0 = none sigma 0.155 0.75 3.0 0.0 right
+TrafficBarrierR.1 = none sigma 0.155 0.75 3.0 0.0 right
+TrafficBarrierC = none sigma 0.155 0.75 3.0 0.0 center
+
+GuidePostL = none 50.0 0.0 left
+GuidePostR = none 50.0 0.0 right

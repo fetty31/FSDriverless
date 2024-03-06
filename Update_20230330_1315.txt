@@ -1,0 +1,75 @@
+Logfile - Project update to CarMaker 11.0.1
+===============================================================================
+
+Start: 2023-03-30 13:15:25
+
+Cleaning up temporary files...
+  Deleting temporary TestRun, Vehicle and Trailer files
+  Deleting temporary files in road cache
+  >> Finished.
+
+Creating source code backup ...
+  src/Makefile
+  -  Info: Copied file to src/Makefile_20230330_1315
+  src/User.c
+  -  Info: Copied file to src/User_20230330_1315.c
+  src/app_tmp.c
+  -  Info: Copied file to src/app_tmp_20230330_1315.c
+  3 source code files have been copied
+  >> Finished.
+
+Deleting old unmodified template files...
+  0 Files deleted, 0 errors occured
+  >> Finished.
+
+Copying new files to project directory...
+  55 Files copied, 0 errors occured
+  >> Finished.
+
+Converting Simulink models...
+  0 Files converted, 0 errors occured
+  >> Finished.
+
+Converting FMUs...
+  0 Files converted, 0 errors occured
+  >> Finished.
+
+Converting TestRuns and TestSeries...
+  0 Files converted, 0 errors occured
+  >> Finished.
+
+Converting IPGRoad files...
+  0 Files converted, 0 errors occured
+  >> Finished.
+
+Converting Vehicle files...
+  0 Files converted, 0 errors occured
+  >> Finished.
+
+Converting Trailer files...
+  0 Files converted, 0 errors occured
+  >> Finished.
+
+Converting sensor material files...
+  0 Files converted, 0 errors occured
+  >> Finished.
+
+Converting external sensor parametrization files...
+  0 Files converted, 0 errors occured
+  >> Finished.
+
+Converting Tire files...
+  0 Files converted, 0 errors occured
+  >> Finished.
+
+Converting configuration files...
+  Data/Config/OutputQuantities_Anim
+  -  Info: Quantity 'Sensor.Camera.*.ObjID' replaced by 'Sensor.Camera.*.ObjId'
+  1 Files converted, 0 errors occured
+  >> Finished.
+
+-------------------------------------------------------------------------------
+Update finished successfully. No errors occured
+-------------------------------------------------------------------------------
+
+End: 2023-03-30 13:15:36

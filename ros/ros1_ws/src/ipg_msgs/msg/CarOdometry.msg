@@ -1,0 +1,4 @@
+geometry_msgs/Point position
+CarVelocity velocity
+geometry_msgs/Vector3 acceleration
+float64 heading

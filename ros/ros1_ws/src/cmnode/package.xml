@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>cmnode</name>
+  <version>1.0.0</version>
+  <description>
+    Shared library for CarMaker ROS Node implementation.
+  </description>
+  
+  <maintainer email="oriol.martinez.fite@gmail.com">fetty</maintainer>
+
+  <url type="website">https://bcnemotorsport.upc.edu/</url>
+  
+  <license>IPG Automotive GmbH</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>roscpp</depend>
+
+  <build_depend>message_generation</build_depend>
+  <build_depend>cmrosutils</build_depend>
+  <build_depend>ipg_msgs</build_depend>
+  <build_depend>tf</build_depend>
+  <build_depend>tf2</build_depend>
+  <build_depend>tf2_ros</build_depend>
+  <build_depend>tf2_geometry_msgs</build_depend>
+  <build_depend>nav_msgs</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>tracker</build_depend>
+
+  <exec_depend>message_runtime</exec_depend>
+  <exec_depend>cmrosutils</exec_depend>
+  <exec_depend>ipg_msgs</exec_depend>
+  <exec_depend>tf</exec_depend>
+  <exec_depend>tf2</exec_depend>
+  <exec_depend>tf2_ros</exec_depend>
+  <exec_depend>tf2_geometry_msgs</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>tracker</exec_depend>
+
+</package>

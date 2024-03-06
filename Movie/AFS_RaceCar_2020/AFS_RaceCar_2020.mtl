@@ -1,0 +1,50 @@
+# Blender MTL File: 'AFS_006.blend'
+# Material Count: 6
+
+newmtl alu
+Ns 600  
+Ka 0.4 0.4 0.4
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8 
+MatID metal
+
+newmtl alu_grey
+Ns 850
+Ka 0.1 0.1 0.1 
+Kd 0.2 0.2 0.2
+Ks 0.76 0.76 0.76 
+MatID metal_painted
+
+newmtl body
+Ka 0.8 0.8 0.8
+Kd 0.8 0.8 0.8
+Ks 0.4 0.4 0.4
+Ns 40
+Km 0.125 0.125 0.125 .125
+map_Kd AFS_RaceCar.jpg
+MatID plastic
+
+newmtl glass_black
+Ns 700
+d 1
+Ka 0.02 0.02 0.02
+Kd 0.05 0.05 0.05
+Ks 0.80 0.80 0.80
+Km 0.12 0.12 0.12 0.15
+MatID glass
+
+newmtl lights
+Ns 100
+Ka 1 1 1
+Kd 1 1 1
+Ks 0.3 0.3 0.3
+Ke 0.6 0.6 0.6
+map_Kd AFS_RaceCar.jpg
+MatID plastic
+
+newmtl shield
+Ka 0.1 0.1 0.1
+Kd 0.11 0.11 0.11
+Ks 0.06 0.06 0.06
+Ns 20
+MatID plastic

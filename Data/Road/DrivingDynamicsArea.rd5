@@ -1,0 +1,46 @@
+#INFOFILE1.1 - Do not remove this line!
+FileIdent = IPGRoad 11.0
+FileCreator = CarMaker 11.0.1
+LibVersion = 11.0.1
+Country = DEU DEU
+nLinks = 1
+nJunctions = 0
+nObjects = 28
+nRoutes = 1
+RoadNetworkLength = 15000
+BBox = -10 15010 -15000 7512.5 -11 11
+Route.0.Length = 15000
+RST.Unit = kmh
+RST = 50 100 -1 30 70 50 -1 -1
+Movie = 0.2 1 0.02 1.5 1.5 1 1
+Movie.BgGeoFName = 3D/Utilities/RoadGrid_DrivingDynamicsSurface.tclgeo
+PathMode = -1
+Link.0.ID = 0
+Link.0.Node0 = 0 0 0 0
+Link.0.Node1 = 15000 0 0 0
+Link.0.RST = Undefined
+Link.0.Friction = 1.5
+Link.0.RL.ID = 1
+Link.0.Seg.0.ID = 5
+Link.0.Seg.0.Type = Straight
+Link.0.Seg.0.Param = 15000 0 0 0 0 0 0 0
+Link.0.LateralCenterLineOffset.ID = 9
+Link.0.LateralCenterLineOffset:
+	61 -1 0 0 0 7500 -999 -999 -999
+	62 -1 0 1 0 7500 -999 -999 -999
+Link.0.LaneSection.0.ID = 6
+Link.0.LaneSection.0.Start = 0
+Link.0.LaneSection.0.LaneL.0.ID = 28
+Link.0.LaneSection.0.LaneL.0 = 0 2.5 2.5 5 0 0 0
+Link.0.LaneSection.0.LaneR.0.ID = 31
+Link.0.LaneSection.0.LaneR.0 = 0 15000 15000 0 0 0 0
+Link.0.LaneSection.0.LaneR.0.ARP = 66 67 68 69 70 71
+Link.0.LaneSection.0.LaneR.1.ID = 52
+Link.0.LaneSection.0.LaneR.1 = 0 2.5 2.5 5 0 0 0
+LanePath.0 = 40 31 2 10 0.1 0.1 -1
+Route.0.ID = 12
+Route.0.Name = Route
+Route.0.DrvPath.ID = 13
+Route.0.DrvPath:
+	40
+MaxUsedObjId = 71

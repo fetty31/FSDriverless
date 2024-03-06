@@ -1,0 +1,36 @@
+newmtl alu
+Ns 600  
+Ka 0.4 0.4 0.4
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8 
+MatID metal
+
+newmtl alu_black
+Ns 850
+Ka 0.1 0.1 0.1 
+Kd 0.2 0.2 0.2
+Ks 0.76 0.76 0.76 
+MatID metal_painted
+
+newmtl interior
+Ns 60
+Ka 0.5 0.5 0.5
+Kd 1 1 1
+Ks 0.08 0.08 0.08
+map_Kd AFS_RaceCar.jpg
+MatID plastic
+
+newmtl shield
+Ka 0.1 0.1 0.1
+Kd 0.11 0.11 0.11
+Ks 0.06 0.06 0.06
+Ns 20
+MatID plastic
+
+newmtl tire
+Ns 60 
+Ka 0.5 0.5 0.5
+Kd 1 1 1 
+Ks 0.08 0.08 0.08
+map_Kd AFS_RaceCar.jpg
+MatID rubber 

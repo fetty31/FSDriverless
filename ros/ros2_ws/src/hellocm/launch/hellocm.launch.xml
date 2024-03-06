@@ -1,0 +1,15 @@
+<launch>
+  <!--
+    provide user defined arguments to roslaunch call
+    - e.g. roslaunch <pkg> <launchfile> use_sim_time:="true"
+  -->
+
+  <arg name="use_sim_time" default="false"/>
+  <arg name="ns" default="/hellocm"/>
+
+  <!-- HelloCM: External ROS Node communicating with CarMaker -->
+  <node pkg="hellocm" exec="hellocm" name="hellocm" namespace="$(var ns)" output="screen" required="true">
+    <param name="use_sim_time" value="$(var use_sim_time)" />
+    <remap from="$(var ns)/cm2ext" to="/carmaker/cm2ext"/>
+  </node>
+</launch>

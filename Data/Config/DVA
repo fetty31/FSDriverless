@@ -1,0 +1,8 @@
+#INFOFILE1.1 - Do not remove this line!
+FileIdent = CarMaker-DVA 4.0
+nDialogQu = 10
+Qu.0.Name = Vhcl.Yaw
+Qu.0.Mode = - value
+Qu.0.Count = 1
+Qu.0.Unit = rad
+nQu = 1

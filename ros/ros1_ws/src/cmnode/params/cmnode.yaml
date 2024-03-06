@@ -1,0 +1,105 @@
+# CMNode parameters
+
+Config:
+  LateralCtrl:    true     # whether we are using lateral control pipeline or not
+  Driver:         false    # whether we want to use the IPG driver or not
+  HidraulicBrake: false    # whether we want to use Hidraulic Braking or not (if not, a RB algorithm should be present)
+  EBS:            true     # whether we will use EBS when entering finish state
+  LLC:            0        # whether we are simulating with Low Level Control : 0 == false, 1 == Ctrl by Trq, 2 == Ctrl by Vel
+  4WD:            false    # whether we are using 4 Wheel Drive (true) or 2 Wheel Drive (false)
+
+Noise: # gaussian noise for sensors
+  Odom:
+    Mean: 0.0
+    Std: 0.3
+  IMU:
+    Mean: 0.0
+    Std: 0.15
+
+Steering:
+  MaxAtWheel: 25  # max/min steering angle in wheel frame (not steering wheel frame) [º]
+  MinAtWheel: -25
+
+Subscribers: # subscribers in CM_ROS_IF need a cycle time (refreshing time) --> try to set a bigger "refresh" frequency than the publisher's.
+  Commands:       # Example: we know this topic will be published at 40Hz, so 50Hz is fine for refreshing its CM node callback
+    Hz: 50      
+    Topic: /AS/C/commands
+  Steering:
+    Hz: 50
+    Topic: /AS/C/steering
+  Finish:
+    Hz: 50
+    Topic: /AS/C/finish
+  Motors:
+    FL:
+      Hz: 100
+      Topic: /CTRL/FrontLeftMotor
+    FR:
+      Hz: 100
+      Topic: /CTRL/FrontRightMotor
+    RL:
+      Hz: 100
+      Topic: /CTRL/RearLeftMotor
+    RR:
+      Hz: 100
+      Topic: /CTRL/RearRightMotor
+
+Publishers:
+  Lidar:
+    Topic: pointcloud
+  CarState:
+    Hz: 40
+    Topic: state
+  Sensors:
+    Odom:
+      Hz: 100
+      Topic: vectornav/Odom
+    Pose:
+      Hz: 100
+      Topic: vectornav/Pose
+    IMU:
+      Hz: 100
+      Topic: vectornav/IMU
+    SBG:
+      Front:
+        Hz: 100
+        Topic: SBGFront/IMU
+      Rear:
+        Hz: 100
+        Topic: SBGRear/IMU
+    Steering:
+      Hz: 100
+      Topic: Sensors/Steering
+    Battery:
+      Hz: 100
+      Topic: Sensors/Battery
+  Estimation:
+    Kinematic:
+      Hz: 100
+      Topic: Estimation/Kinematic
+    Dynamic:
+      Hz: 100
+      Topic: Estimation/Dynamic
+  Inverters:
+    FL:
+      Hz: 50
+      Topic: Inverter/FrontLeftMotor
+    FR:
+      Hz: 50
+      Topic: Inverter/FrontRightMotor
+    RL:
+      Hz: 50
+      Topic: Inverter/RearLeftMotor
+    RR:
+      Hz: 50
+      Topic: Inverter/RearRightMotor
+  Pedals:
+    Throttle:
+      Hz: 100
+      Topic: Sensors/ThrottleEncoder
+    Brake:
+      Hz: 100
+      Topic: Sensors/BrakeEncoder
+  Pressure:
+    Hz: 100
+    Topic: Sensors/MasterCyclinder

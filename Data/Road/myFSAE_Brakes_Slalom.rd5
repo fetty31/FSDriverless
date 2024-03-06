@@ -1,0 +1,156 @@
+#INFOFILE1.1 - Do not remove this line!
+FileIdent = IPGRoad 11.0
+FileCreator = CarMaker 11.0.1
+LibVersion = 11.0.1
+Country = GBR
+nLinks = 1
+nJunctions = 1
+nObjects = 110
+nRoutes = 1
+RoadNetworkLength = 362.831822096742
+BBox = -22.452709137156 172.494765955468 -36.5 12.5 -11 11
+Route.0.Length = 362.831822096742
+RST.Unit = kmh
+RST = 50 100 130 30 70 30 0 -1
+Movie = 0.2 1 0.01 1.5 1.5 1 1
+PathMode = -1
+Junction.0.ID = 31
+Junction.0.Type = Direct
+Junction.0.Knot = 0 0 0
+Junction.0.RST = Urban
+Junction.0.AddParams = 0 -999 0 -999 0 -999
+Junction.0.Arm.0.ID = 32
+Junction.0.Arm.0 = 0 0.15 0 0 0
+Junction.0.Arm.1.ID = 33
+Junction.0.Arm.1 = 0 0.15 0 0 1
+Junction.0.MainArms = 0 1
+Link.0.ID = 0
+Link.0.Node0 = 0 0 0 0
+Link.0.Node1 = 1.11022302462516e-016 6.93889390390723e-018 0 -1.43124960665858e-014
+Link.0.RST = Countryroad
+Link.0.RL.ID = 1
+Link.0.Seg.0.ID = 5
+Link.0.Seg.0.Type = Straight
+Link.0.Seg.0.Param = 150 0 0 0 0 0 0 0
+Link.0.Seg.1.ID = 25
+Link.0.Seg.1.Type = TurnRight
+Link.0.Seg.1.Param = 10 180 0 0 0 0 0 0
+Link.0.Seg.2.ID = 27
+Link.0.Seg.2.Type = Straight
+Link.0.Seg.2.Param = 150 0 0 0 0 0 0 0
+Link.0.Seg.3.ID = 28
+Link.0.Seg.3.Type = TurnRight
+Link.0.Seg.3.Param = 10 175 0 0 0 0 0 0
+Link.0.Seg.4.ID = 29
+Link.0.Seg.4.Type = PointList
+Link.0.Seg.4.Param = 1 -2.44921270764475e-016 1 0 0 0 0 0
+Link.0.Seg.4.PointList:
+	113 -1 0 0
+Link.0.LateralCenterLineOffset.ID = 23
+Link.0.LateralCenterLineOffset:
+	24 -1 0 0 0 2 0 -999 -999
+	26 -1 0 1 0 2 0 -999 -999
+Link.0.LaneSection.0.ID = 6
+Link.0.LaneSection.0.Start = 0
+Link.0.LaneSection.0.LaneL.0.ID = 7
+Link.0.LaneSection.0.LaneL.0 = 0 0.5 0.5 5 0 0 0
+Link.0.LaneSection.0.LaneR.0.ID = 8
+Link.0.LaneSection.0.LaneR.0 = 0 4 4 0 0 0 0
+Link.0.LaneSection.0.LaneR.0.ARP = 9 10 11 12 13 14
+Link.0.LaneSection.0.LaneR.1.ID = 20
+Link.0.LaneSection.0.LaneR.1 = 0 0.5 0.5 5 0 0 0
+Link.0.LaneSection.1.ID = 2
+Link.0.LaneSection.1.Start = 190
+Link.0.LaneSection.1.LaneL.0.ID = 3
+Link.0.LaneSection.1.LaneL.0 = 0 2 2 0 0 0 0
+Link.0.LaneSection.1.LaneL.0.ARP = 4 16 17 18 19 21
+Link.0.LaneSection.1.LaneL.0.Width:
+	50 -1 0 0 0 0 0 -999 -999
+	51 -1 2 0 0 2 0 -999 -999
+	52 -1 58 0 0 2 0 -999 -999
+	53 -1 60 0 0 0 0 -999 -999
+Link.0.LaneSection.1.LaneL.1.ID = 47
+Link.0.LaneSection.1.LaneL.1 = 0 2.5 2.5 5 0 0 0
+Link.0.LaneSection.1.LaneR.0.ID = 57
+Link.0.LaneSection.1.LaneR.0 = 0 4 4 0 0 0 0
+Link.0.LaneSection.1.LaneR.0.ARP = 58 59 60 61 79 80
+Link.0.LaneSection.1.LaneR.1.ID = 86
+Link.0.LaneSection.1.LaneR.1 = 0 2 2 0 0 0 0
+Link.0.LaneSection.1.LaneR.1.ARP = 87 88 89 90 91 92
+Link.0.LaneSection.1.LaneR.1.Width:
+	45 -1 0 0 0 0 0 -999 -999
+	46 -1 2 0 0 2 0 -999 -999
+	48 -1 58 0 0 2 0 -999 -999
+	49 -1 60 0 0 0 0 -999 -999
+Link.0.LaneSection.1.LaneR.2.ID = 96
+Link.0.LaneSection.1.LaneR.2 = 0 2.5 2.5 5 0 0 0
+Link.0.LaneSection.2.ID = 62
+Link.0.LaneSection.2.Start = 250
+Link.0.LaneSection.2.LaneL.0.ID = 63
+Link.0.LaneSection.2.LaneL.0 = 0 0.5 0.5 5 0 0 0
+Link.0.LaneSection.2.LaneR.0.ID = 64
+Link.0.LaneSection.2.LaneR.0 = 0 4 4 0 0 0 0
+Link.0.LaneSection.2.LaneR.0.ARP = 65 66 67 68 69 70
+Link.0.LaneSection.2.LaneR.1.ID = 76
+Link.0.LaneSection.2.LaneR.1 = 0 0.5 0.5 5 0 0 0
+LanePath.0 = 15 8 2 10 0.1 0.1 -1
+LanePath.1 = 22 3 2 10 0.1 0.1 -1
+LanePath.2 = 81 57 2 10 0.1 0.1 -1
+LanePath.3 = 93 86 2 10 0.1 0.1 -1
+LanePath.4 = 71 64 2 10 0.1 0.1 -1
+Route.0.ID = 34
+Route.0.Name = Route_0
+Route.0.DrvPath.ID = 35
+Route.0.DrvPath:
+	15
+	81
+	71
+RL.1.Marker.0.ID = 36 15
+RL.1.Marker.0.Type = DrvPylon
+RL.1.Marker.0.Param = 25 0 0 100 1 3.5
+RL.1.Marker.1.ID = 37 15
+RL.1.Marker.1.Type = DrvPylon
+RL.1.Marker.1.Param = 45 0 0 100 1 3.5
+RL.1.Marker.2.ID = 38 15
+RL.1.Marker.2.Type = DrvPylon
+RL.1.Marker.2.Param = 65 0 0 100 1 3.5
+RL.1.Marker.3.ID = 39 15
+RL.1.Marker.3.Type = DrvPylon
+RL.1.Marker.3.Param = 75 0 0 100 1 3.5
+RL.1.Marker.4.ID = 44 15
+RL.1.Marker.4.Type = DrvPylon
+RL.1.Marker.4.Param = 75 0 0 100 1 3.5
+RL.1.Marker.5.ID = 40 15
+RL.1.Marker.5.Type = DrvPylon
+RL.1.Marker.5.Param = 80 0 0 100 1 3.5
+RL.1.Marker.6.ID = 41 15
+RL.1.Marker.6.Type = DrvPylon
+RL.1.Marker.6.Param = 82 0 0 100 1 3.5
+RL.1.Marker.7.ID = 42 15
+RL.1.Marker.7.Type = DrvPylon
+RL.1.Marker.7.Param = 83 0 0 100 1 3.5
+RL.1.Marker.8.ID = 43 15
+RL.1.Marker.8.Type = DrvPylon
+RL.1.Marker.8.Param = 84 0 0 100 1 3.5
+RL.1.Marker.9.ID = 99 81
+RL.1.Marker.9.Type = DrvPylon
+RL.1.Marker.9.Param = 0 0 0 100 1 4
+RL.1.Marker.10.ID = 30 81
+RL.1.Marker.10.Type = DrvPylon
+RL.1.Marker.10.Param = 10 0 2 100 1 4
+RL.1.Marker.11.ID = 104 81
+RL.1.Marker.11.Type = DrvPylon
+RL.1.Marker.11.Param = 20 0 -2 100 1 4
+RL.1.Marker.12.ID = 106 81
+RL.1.Marker.12.Type = DrvPylon
+RL.1.Marker.12.Param = 30 0 2 100 1 4
+RL.1.Marker.13.ID = 108 81
+RL.1.Marker.13.Type = DrvPylon
+RL.1.Marker.13.Param = 40 0 -2 100 1 4
+RL.1.Marker.14.ID = 110 81
+RL.1.Marker.14.Type = DrvPylon
+RL.1.Marker.14.Param = 50 0 2 100 1 4
+RL.1.Marker.15.ID = 112 81
+RL.1.Marker.15.Type = DrvPylon
+RL.1.Marker.15.Param = 60 0 0 100 1 4
+MaxUsedObjId = 113
